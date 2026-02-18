@@ -26,9 +26,9 @@ export default function Faq() {
     },
   ];
 
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const toggleIndex = (index) => {
+  const toggleIndex = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
