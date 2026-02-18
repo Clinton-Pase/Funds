@@ -2,11 +2,27 @@
 
 import { useEffect, useRef, useState } from "react";
 
+  type Stat = {
+  id: number;
+  label: string;
+  value: number;
+  suffix: string;
+  bg: string;
+  icon:"money" | "users" | "campaign" | "life";
+};
+
+type StatCardProps = {
+  stat: Stat;
+  animate: boolean;
+  index: number;
+};
+
 export default function Impact() {
   const sectionRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
 
-  const stats = [
+
+  const stats : Stat[] = [
     {
       id: 1,
       label: "Funds Raised",
@@ -105,11 +121,11 @@ export default function Impact() {
 }
 
 /* ----------------------------------
-   Stat Card (COUNTING LOGIC LIVES HERE)
+
 ----------------------------------- */
 
-function StatCard({ stat, animate, index }) {
-  const [count, setCount] = useState(0);
+function StatCard({ stat, animate, index } : StatCardProps) {
+  const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
     if (!animate) return;
@@ -175,7 +191,7 @@ function StatCard({ stat, animate, index }) {
    SVG Icons (NO LIBRARIES)
 ----------------------------------- */
 
-function ImpactIcon({ type }) {
+function ImpactIcon({ type } : {type: Stat["icon"]}) {
   if (type === "money") {
     return (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">

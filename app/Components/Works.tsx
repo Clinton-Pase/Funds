@@ -1,6 +1,12 @@
 
+type Step = {
+  title: string;
+  description: string;
+  icon: "flag" | "heart" | "wallet";
+};
 
-const steps = [
+
+const steps: Step[] = [
   {
     
     title: "Start a Campaign",
@@ -23,6 +29,7 @@ const steps = [
        icon: "wallet",
   },
 ];
+
 
 
 export default function Works() {
@@ -104,7 +111,7 @@ export default function Works() {
    SVG ICONS (NO LIBRARIES)
 ----------------------------------- */
 
-function StepIcon({ type }) {
+function StepIcon({ type } : {type:Step["icon"]} ) {
   if (type === "flag") {
     return (
       <svg
